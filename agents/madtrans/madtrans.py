@@ -334,7 +334,7 @@ class Madtrans:
             readable format.
         """
         if day == 'LA':
-            return _('Labur day')
+            return _('Labour day')
 
         elif day == 'V':
             return _('Friday')

@@ -1,0 +1,139 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-04 17:50+0200\n"
+"PO-Revision-Date: 2015-09-04 17:50+0200\n"
+"Last-Translator: Rafael Medina García <rafamedgar@gmail.com>\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: agents/madtrans/madtrans.py:92 agents/madtrans/madtrans.py:125
+#, python-format
+msgid "ERROR: %s"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:131 agents/madtrans/madtrans.py:206
+#: agents/madtrans/madtrans.py:266
+msgid "Line"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:179
+#, python-format
+msgid "Distance from origin: %d\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:180
+#, python-format
+msgid ""
+"Distance from previous stop: %d\n"
+"\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:208
+#, python-format
+msgid "From: %s\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:209
+#, python-format
+msgid "To: %s\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:210
+#, python-format
+msgid "First (A): %s\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:211
+#, python-format
+msgid "Last (A): %s\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:212
+#, python-format
+msgid "First (B): %s\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:213
+#, python-format
+msgid "Last (B): %s\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:240
+msgid "Time left"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:242
+#, python-format
+msgid ""
+"Bus distance: %d m\n"
+"\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:269
+#, python-format
+msgid "Incidents: %d\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:273
+#, python-format
+msgid "Direction 1: %s\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:274
+#, python-format
+msgid ""
+"Direction 2: %s\n"
+"\n"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:302
+msgid "Lines: "
+msgstr ""
+
+#: agents/madtrans/madtrans.py:318
+msgid "Monday"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:320
+msgid "Tuesday"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:322
+msgid "Wednesday"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:324
+msgid "Thursday"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:326 agents/madtrans/madtrans.py:340
+msgid "Friday"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:328 agents/madtrans/madtrans.py:343
+msgid "Saturday"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:330
+msgid "Sunday"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:337
+msgid "Labour day"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:346
+msgid "Festive"
+msgstr ""
