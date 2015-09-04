@@ -1,4 +1,4 @@
-# Zoe madtrans ![Agent version](https://img.shields.io/badge/Zoe_Agent-0.1.0-blue.svg "Zoe madtrans")
+# Zoe madtrans ![Agent version](https://img.shields.io/badge/Zoe_Agent-0.1.1-blue.svg "Zoe madtrans")
 
 Dynamic information on the transportation in Madrid.
 

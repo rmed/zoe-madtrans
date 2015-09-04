@@ -153,5 +153,5 @@ sub geo_line {
 # Get the stops in a given radius from another stop
 #
 sub geo_stops_from {
-  print("message dst=madtrans&sender=$sender&src=$src&tag=geo-stops-from-stop&radius=$strings[0]&stop=$integers[1]\n");
+  print("message dst=madtrans&sender=$sender&src=$src&tag=geo-stops-from-stop&radius=$integers[0]&stop=$integers[1]\n");
 }

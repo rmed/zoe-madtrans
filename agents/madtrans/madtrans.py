@@ -48,7 +48,7 @@ API = {
     'bus_nodes_lines'        : 'bus/GetNodesLines.php',
     'bus_route_lines'        : 'bus/GetRouteLines.php',
     'bus_route_lines_route'  : 'bus/GetRouteLinesRoute.php',
-    'bus_times_lines'        : 'bus/GetTimeslines.php',
+    'bus_times_lines'        : 'bus/GetTimesLines.php',
     'bus_timetable_lines'    : 'bus/GetTimeTableLines.php',
 
     'geo_arrive_stop'        : 'geo/GetArriveStop.php',
@@ -119,7 +119,7 @@ class Madtrans:
         self.set_locale(sender)
 
         params = {}
-        params['selectDate'] = parser.get('date')
+        params['SelectDate'] = parser.get('date')
         params['Lines'] = parser.get('lines').replace(' ', '|')
 
         response = self.make_request('bus_list_lines', params)
@@ -221,7 +221,7 @@ class Madtrans:
 
             API requires:
                 SelectDate  - dd/mm/yyyy
-                lines       - | separated lines
+                Lines       - | separated lines
         """
         sender = parser.get('sender')
         src = parser.get('src')
@@ -229,7 +229,7 @@ class Madtrans:
 
         params = {}
         params['SelectDate'] = parser.get('date')
-        params['lines'] = parser.get('line')
+        params['Lines'] = parser.get('line')
 
         response = self.make_request('bus_times_lines', params)
 
@@ -247,13 +247,12 @@ class Madtrans:
         for l in result:
             msg += '- '
             msg += _('Line')
-            msg += ' %s (%s)\n' % (l['line'], self.day_type(l['typeDay']))
-            msg += _('From: %s\n') % l['dateFirst']
-            msg += _('To: %s\n') % l['dateEnd']
-            msg += _('First (A): %s\n') % l['timeFirstA']
-            msg += _('Last (A): %s\n') % l['timeEndA']
-            msg += _('First (B): %s\n') % l['timeFirstB']
-            msg += _('Last (B): %s\n') % l['timeEndB']
+            msg += ' %s (%s) ' % (l['line'], self.day_type(l['typeDay']))
+            msg += '[%s - %s]\n' % (l['dateFirst'], l['dateEnd'])
+            msg += _('First service (A): %s\n') % l['timeFirstA']
+            msg += _('Last service (A): %s\n') % l['timeEndA']
+            msg += _('First service (B): %s\n') % l['timeFirstB']
+            msg += _('Last service (B): %s\n') % l['timeEndB']
             msg += '\n'
 
         return self.feedback(msg, sender, src)
@@ -289,7 +288,7 @@ class Madtrans:
             msg += '- '
             msg += '%s: %s\n' % (a['lineId'], a['destination'])
             msg += _('Time left')
-            if a['busTimeLeft'] == 999999:
+            if a['busTimeLeft'] >= 999999:
                 mins, secs = divmod(a['busTimeLeft'], 60)
                 msg += ': %d mins %d sec\n' % (mins, secs)
             else:
@@ -376,7 +375,7 @@ class Madtrans:
                     msg += '%s ' % l['label']
 
             else:
-                msg += s['line']['label']
+                msg += '%s\n' % s['line']['label']
 
         return self.feedback(msg, sender, src)
 
