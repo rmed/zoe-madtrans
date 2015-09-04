@@ -82,8 +82,8 @@ class Madtrans:
         self.set_locale(sender)
 
         params = {}
-        params['SelectDateBegin'] = parser.get('sdate')
-        params['SelectDateEnd'] = parser.get('edate')
+        params['SelectDateBegin'] = parser.get('sdate').replace('-', '/')
+        params['SelectDateEnd'] = parser.get('edate').replace('-', '/')
 
         response = self.make_request('bus_calendar', params)
 
@@ -116,7 +116,7 @@ class Madtrans:
         self.set_locale(sender)
 
         params = {}
-        params['selectDate'] = parser.get('date')
+        params['selectDate'] = parser.get('date').replace('-', '/')
         params['Lines'] = parser.get('lines').replace(' ', '|')
         response = self.make_request('bus_list_lines', params)
 
@@ -156,7 +156,7 @@ class Madtrans:
 
     @Message(tags=['bus-route-lines'])
     def bus_route_lines(self, parser):
-        """ Get stops for a given line or lines.
+        """ Get stops for a given line.
 
             We only work with a single line each time.
 
@@ -169,7 +169,7 @@ class Madtrans:
         self.set_locale(sender)
 
         params = {}
-        params['SelectDate'] = parser.get('date')
+        params['SelectDate'] = parser.get('date').replace('-', '/')
         params['Lines'] = parser.get('line')
         response = self.make_request('bus_route_list', params)
 
@@ -196,7 +196,7 @@ class Madtrans:
         self.set_locale(sender)
 
         params = {}
-        params['SelectDate'] = parser.get('date')
+        params['SelectDate'] = parser.get('date').replace('-', '/')
         params['line'] = parser.get('line')
         response = self.make_request('bus_route_list', params)
 
@@ -257,7 +257,7 @@ class Madtrans:
         lang = self.set_locale(sender)
 
         params = {}
-        params['fecha'] = parser.get('date')
+        params['fecha'] = parser.get('date').replace('-', '/')
         params['line'] = parser.get('line')
         params['cultureInfo'] = lang
         response = self.make_request('geo_info_line_extended', params)
