@@ -368,14 +368,15 @@ class Madtrans:
         for s in result:
             msg += '- %s (%s): %s\n' % (s['name'], s['stopId'],
                 s['postalAddress'])
-            msg += _('Lines: ')
+            msg += _('Lines:')
 
             if type(s['line']) == list:
                 for l in s['line']:
-                    msg += '%s ' % l['label']
+                    msg += ' %s ' % l['label']
+                msg += '\n'
 
             else:
-                msg += '%s\n' % s['line']['label']
+                msg += ' %s\n' % s['line']['label']
 
         return self.feedback(msg, sender, src)
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-04 21:13+0200\n"
+"POT-Creation-Date: 2015-09-05 00:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,41 +95,41 @@ msgid ""
 msgstr ""
 
 #: agents/madtrans/madtrans.py:371
-msgid "Lines: "
+msgid "Lines:"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:387
+#: agents/madtrans/madtrans.py:388
 msgid "Monday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:389
+#: agents/madtrans/madtrans.py:390
 msgid "Tuesday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:391
+#: agents/madtrans/madtrans.py:392
 msgid "Wednesday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:393
+#: agents/madtrans/madtrans.py:394
 msgid "Thursday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:395 agents/madtrans/madtrans.py:409
+#: agents/madtrans/madtrans.py:396 agents/madtrans/madtrans.py:410
 msgid "Friday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:397 agents/madtrans/madtrans.py:412
+#: agents/madtrans/madtrans.py:398 agents/madtrans/madtrans.py:413
 msgid "Saturday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:399
+#: agents/madtrans/madtrans.py:400
 msgid "Sunday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:406
+#: agents/madtrans/madtrans.py:407
 msgid "Labour day"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:415
+#: agents/madtrans/madtrans.py:416
 msgid "Festive"
 msgstr ""
