@@ -288,7 +288,7 @@ class Madtrans:
             msg += '- '
             msg += '%s: %s\n' % (a['lineId'], a['destination'])
             msg += _('Time left')
-            if a['busTimeLeft'] >= 999999:
+            if a['busTimeLeft'] < 999999:
                 mins, secs = divmod(a['busTimeLeft'], 60)
                 msg += ': %d mins %d sec\n' % (mins, secs)
             else:
