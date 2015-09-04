@@ -229,7 +229,7 @@ class Madtrans:
 
         params = {}
         params['SelectDate'] = parser.get('date')
-        params['line'] = parser.get('line')
+        params['lines'] = parser.get('line')
 
         response = self.make_request('bus_times_lines', params)
 
@@ -357,10 +357,8 @@ class Madtrans:
 
         response = self.make_request('geo_stops_from_stop', params)
 
-        if response['resultCode'] != 0:
-            return self.feedback(
-                _('ERROR: %s') % response['resultDescription'],
-                sender, src)
+        if type(response) == list:
+            return self.feedback(_('Incorrect values'), sender, src)
 
         if type(response['stops']) == list:
             result = response['stops']
