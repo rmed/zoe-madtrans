@@ -7,7 +7,7 @@ Dynamic information on the transportation in Madrid.
 The `requests` library is automatically installed by the `postinst` script.
 
 Before the agent can perform requests to the EMT API, you must register in
-[their webpage](opendata.emtmadrid.es/) in order to obtain an user
+[their webpage](http://opendata.emtmadrid.es/Formulario.aspx) in order to obtain an user
 identification and password key.
 
 After obtaining those, simply add the **user identification** in the first line

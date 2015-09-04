@@ -128,6 +128,7 @@ class Madtrans:
             return self.feedback(
                 _('ERROR: %s') % response['resultDescription'],
                 sender, src)
+
         if type(response['resultValues']) == list:
             result = response['resultValues']
         else:
@@ -169,6 +170,7 @@ class Madtrans:
 
         msg = ''
         for s in result:
+            # TODO: Better way of representing lines
             msg += '- %d: %s (%s)\n' % (s['node'], s['name'], s['lines'])
 
         return self.feedback(msg, sender, src)
@@ -191,7 +193,7 @@ class Madtrans:
         params['SelectDate'] = parser.get('date')
         params['Lines'] = parser.get('line')
 
-        response = self.make_request('bus_route_list', params)
+        response = self.make_request('bus_route_lines', params)
 
         if response['resultCode'] != 0:
             return self.feedback(
@@ -229,7 +231,7 @@ class Madtrans:
         params['SelectDate'] = parser.get('date')
         params['line'] = parser.get('line')
 
-        response = self.make_request('bus_route_list', params)
+        response = self.make_request('bus_times_lines', params)
 
         if response['resultCode'] != 0:
             return self.feedback(
@@ -284,11 +286,15 @@ class Madtrans:
 
         msg = ''
         for a in result:
-            mins, secs = divmod(a['busTimeLeft'], 60)
             msg += '- '
             msg += '%s: %s\n' % (a['lineId'], a['destination'])
             msg += _('Time left')
-            msg += ': %d:%d\n' % (mins, secs)
+            if a['busTimeLeft'] == 999999:
+                mins, secs = divmod(a['busTimeLeft'], 60)
+                msg += ': %d mins %d sec\n' % (mins, secs)
+            else:
+                msg += ': +20 mins\n'
+
             msg += _('Bus distance: %d m\n\n') % a['busDistance']
 
         return self.feedback(msg, sender, src)
@@ -330,7 +336,7 @@ class Madtrans:
 
         return self.feedback(msg, sender, src)
 
-    @Message(tags=['gep-stops-from-stop'])
+    @Message(tags=['geo-stops-from-stop'])
     def geo_stops_from_stop(self, parser):
         """ Get stops from a given radius of the specified stop and
             information such as lines arriving to those stops.
@@ -443,7 +449,11 @@ class Madtrans:
         params['passKey'] = EMT_PWD
 
         # SSL verification fails...
-        return requests.post(api, data=params, verify=False).json()
+        response = requests.post(api, data=params, verify=False).json()
+
+        print(response)
+
+        return response
 
     def set_locale(self, user):
         """ Set the locale for messages based on the locale of the sender.

@@ -97,7 +97,7 @@ sub get {
   print("--bs horario /bus/autobús /para línea <integer> /el <string>\n");
   print("--ga tiempo /de espera /en parada <integer>\n");
   print("--gi info/información /de /la línea <integer> /el <string>\n");
-  print("--gs paradas a <integer> /metros de /parada <integer>\n");
+  print("--gs paradas a <integer> /metros de /la /parada <integer>\n");
 }
 
 #
