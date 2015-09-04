@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-04 17:50+0200\n"
+"POT-Creation-Date: 2015-09-04 20:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,122 +17,128 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: agents/madtrans/madtrans.py:92 agents/madtrans/madtrans.py:125
+#: agents/madtrans/madtrans.py:92 agents/madtrans/madtrans.py:129
+#: agents/madtrans/madtrans.py:162 agents/madtrans/madtrans.py:198
+#: agents/madtrans/madtrans.py:236 agents/madtrans/madtrans.py:356
 #, python-format
 msgid "ERROR: %s"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:131 agents/madtrans/madtrans.py:206
-#: agents/madtrans/madtrans.py:266
+#: agents/madtrans/madtrans.py:139 agents/madtrans/madtrans.py:247
+#: agents/madtrans/madtrans.py:321
 msgid "Line"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:179
+#: agents/madtrans/madtrans.py:209
 #, python-format
 msgid "Distance from origin: %d\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:180
+#: agents/madtrans/madtrans.py:210
 #, python-format
 msgid ""
 "Distance from previous stop: %d\n"
 "\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:208
+#: agents/madtrans/madtrans.py:249
 #, python-format
 msgid "From: %s\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:209
+#: agents/madtrans/madtrans.py:250
 #, python-format
 msgid "To: %s\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:210
+#: agents/madtrans/madtrans.py:251
 #, python-format
 msgid "First (A): %s\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:211
+#: agents/madtrans/madtrans.py:252
 #, python-format
 msgid "Last (A): %s\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:212
+#: agents/madtrans/madtrans.py:253
 #, python-format
 msgid "First (B): %s\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:213
+#: agents/madtrans/madtrans.py:254
 #, python-format
 msgid "Last (B): %s\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:240
+#: agents/madtrans/madtrans.py:278 agents/madtrans/madtrans.py:317
+msgid "Incorrect values"
+msgstr ""
+
+#: agents/madtrans/madtrans.py:290
 msgid "Time left"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:242
+#: agents/madtrans/madtrans.py:292
 #, python-format
 msgid ""
 "Bus distance: %d m\n"
 "\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:269
+#: agents/madtrans/madtrans.py:324
 #, python-format
 msgid "Incidents: %d\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:273
+#: agents/madtrans/madtrans.py:328
 #, python-format
 msgid "Direction 1: %s\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:274
+#: agents/madtrans/madtrans.py:329
 #, python-format
 msgid ""
 "Direction 2: %s\n"
 "\n"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:302
+#: agents/madtrans/madtrans.py:368
 msgid "Lines: "
 msgstr ""
 
-#: agents/madtrans/madtrans.py:318
+#: agents/madtrans/madtrans.py:384
 msgid "Monday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:320
+#: agents/madtrans/madtrans.py:386
 msgid "Tuesday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:322
+#: agents/madtrans/madtrans.py:388
 msgid "Wednesday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:324
+#: agents/madtrans/madtrans.py:390
 msgid "Thursday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:326 agents/madtrans/madtrans.py:340
+#: agents/madtrans/madtrans.py:392 agents/madtrans/madtrans.py:406
 msgid "Friday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:328 agents/madtrans/madtrans.py:343
+#: agents/madtrans/madtrans.py:394 agents/madtrans/madtrans.py:409
 msgid "Saturday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:330
+#: agents/madtrans/madtrans.py:396
 msgid "Sunday"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:337
+#: agents/madtrans/madtrans.py:403
 msgid "Labour day"
 msgstr ""
 
-#: agents/madtrans/madtrans.py:346
+#: agents/madtrans/madtrans.py:412
 msgid "Festive"
 msgstr ""

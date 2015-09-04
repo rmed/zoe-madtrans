@@ -39,7 +39,7 @@ gettext.install('madtrans')
 LOCALEDIR = path(env['ZOE_HOME'], 'locale')
 ZOE_LOCALE = env['ZOE_LOCALE'] or 'en'
 
-BASE_URL = 'https://openbus.emtmadrid.es:9443/emt-proxy-server/last/'
+BASE_URL = 'https://openbus.emtmadrid.es/emt-proxy-server/last/'
 # Not all of these are used!
 API = {
     'bus_calendar'           : 'bus/GetCalendar.php',
@@ -60,7 +60,7 @@ API = {
     'geo_street'             : 'geo/GetStreet.php',
 }
 
-with open(path(env['ZOE_HOME'], 'etc', 'archivist.conf'), 'r') as f:
+with open(path(env['ZOE_HOME'], 'etc', 'madtrans.conf'), 'r') as f:
     EMT_ID = f.readline().strip()
     EMT_PWD = f.readline().strip()
 
@@ -82,8 +82,8 @@ class Madtrans:
         self.set_locale(sender)
 
         params = {}
-        params['SelectDateBegin'] = parser.get('sdate').replace('-', '/')
-        params['SelectDateEnd'] = parser.get('edate').replace('-', '/')
+        params['SelectDateBegin'] = parser.get('sdate')
+        params['SelectDateEnd'] = parser.get('edate')
 
         response = self.make_request('bus_calendar', params)
 
@@ -92,10 +92,13 @@ class Madtrans:
                 _('ERROR: %s') % response['resultDescription'],
                 sender, src)
 
-        # Message will contain day and the type of day
-        # (Laborable, Festive, Saturday) for applicable timetables
+        if type(response['resultValues']) == list:
+            result = response['resultValues']
+        else:
+            result = [response['resultValues'],]
+
         msg = ''
-        for d in response['resultValues']:
+        for d in result:
             msg += '- %s %s: %s\n' % (
                 self.day_week(d['dayOfWeek']),
                 d['date'][:10],
@@ -116,17 +119,22 @@ class Madtrans:
         self.set_locale(sender)
 
         params = {}
-        params['selectDate'] = parser.get('date').replace('-', '/')
+        params['selectDate'] = parser.get('date')
         params['Lines'] = parser.get('lines').replace(' ', '|')
+
         response = self.make_request('bus_list_lines', params)
 
         if response['resultCode'] != 0:
             return self.feedback(
                 _('ERROR: %s') % response['resultDescription'],
                 sender, src)
+        if type(response['resultValues']) == list:
+            result = response['resultValues']
+        else:
+            result = [response['resultValues'],]
 
         msg = ''
-        for l in response['resultValues']:
+        for l in result:
             msg += '- '
             msg += _('Line')
             msg += ' %s: %s - %s\n' % (l['label'], l['nameA'], l['nameB'])
@@ -146,10 +154,21 @@ class Madtrans:
 
         params = {}
         params['Nodes'] = parser.get('stops').replace(' ', '|')
-        response = self.make_request('bus_nodes_list', params)
+
+        response = self.make_request('bus_nodes_lines', params)
+
+        if response['resultCode'] != 0:
+            return self.feedback(
+                _('ERROR: %s') % response['resultDescription'],
+                sender, src)
+
+        if type(response['resultValues']) == list:
+            result = response['resultValues']
+        else:
+            result = [response['resultValues'],]
 
         msg = ''
-        for s in response['resultValues']:
+        for s in result:
             msg += '- %d: %s (%s)\n' % (s['node'], s['name'], s['lines'])
 
         return self.feedback(msg, sender, src)
@@ -169,12 +188,23 @@ class Madtrans:
         self.set_locale(sender)
 
         params = {}
-        params['SelectDate'] = parser.get('date').replace('-', '/')
+        params['SelectDate'] = parser.get('date')
         params['Lines'] = parser.get('line')
+
         response = self.make_request('bus_route_list', params)
 
+        if response['resultCode'] != 0:
+            return self.feedback(
+                _('ERROR: %s') % response['resultDescription'],
+                sender, src)
+
+        if type(response['resultValues']) == list:
+            result = response['resultValues']
+        else:
+            result = [response['resultValues'],]
+
         msg = ''
-        for l in response['resultValues']:
+        for l in result:
             msg += '- %s (%d)\n' % (l['name'], l['node'])
             msg += _('Distance from origin: %d\n') % l['distance']
             msg += _('Distance from previous stop: %d\n\n') % l['distancePreviousStop']
@@ -196,12 +226,23 @@ class Madtrans:
         self.set_locale(sender)
 
         params = {}
-        params['SelectDate'] = parser.get('date').replace('-', '/')
+        params['SelectDate'] = parser.get('date')
         params['line'] = parser.get('line')
+
         response = self.make_request('bus_route_list', params)
 
+        if response['resultCode'] != 0:
+            return self.feedback(
+                _('ERROR: %s') % response['resultDescription'],
+                sender, src)
+
+        if type(response['resultValues']) == list:
+            result = response['resultValues']
+        else:
+            result = [response['resultValues'],]
+
         msg = ''
-        for l in response['resultValues']:
+        for l in result:
             msg += '- '
             msg += _('Line')
             msg += ' %s (%s)\n' % (l['line'], self.day_type(l['typeDay']))
@@ -230,10 +271,19 @@ class Madtrans:
         params = {}
         params['idStop'] = parser.get('stop')
         params['cultureInfo'] = lang
+
         response = self.make_request('geo_arrive_stop', params)
 
+        if type(response) == list:
+            return self.feedback(_('Incorrect values'), sender, src)
+
+        if type(response['arrives']) == list:
+            result = response['arrives']
+        else:
+            result = [response['arrives'],]
+
         msg = ''
-        for a in response['arrives']:
+        for a in result:
             mins, secs = divmod(a['busTimeLeft'], 60)
             msg += '- '
             msg += '%s: %s\n' % (a['lineId'], a['destination'])
@@ -257,10 +307,15 @@ class Madtrans:
         lang = self.set_locale(sender)
 
         params = {}
-        params['fecha'] = parser.get('date').replace('-', '/')
+        params['fecha'] = parser.get('date')
         params['line'] = parser.get('line')
         params['cultureInfo'] = lang
+
         response = self.make_request('geo_info_line_extended', params)
+
+        if type(response) == list:
+            return self.feedback(_('Incorrect values'), sender, src)
+
         line = response['Line']
 
         msg = _('Line')
@@ -293,10 +348,21 @@ class Madtrans:
         params['idStop'] = parser.get('stop')
         params['Radius'] = parser.get('radius')
         params['cultureInfo'] = lang
+
         response = self.make_request('geo_stops_from_stop', params)
 
+        if response['resultCode'] != 0:
+            return self.feedback(
+                _('ERROR: %s') % response['resultDescription'],
+                sender, src)
+
+        if type(response['stops']) == list:
+            result = response['stops']
+        else:
+            result = [response['stops'],]
+
         msg = ''
-        for s in response['stops']:
+        for s in result:
             msg += '- %s (%s): %s\n' % (s['name'], s['stopId'],
                 s['postalAddress'])
             msg += _('Lines: ')
@@ -371,7 +437,7 @@ class Madtrans:
             path   - endpoint of the API
             params - dict with parameters for the request
         """
-        api = BASE_URL + API['path']
+        api = BASE_URL + API[path]
 
         params['idClient'] = EMT_ID
         params['passKey'] = EMT_PWD

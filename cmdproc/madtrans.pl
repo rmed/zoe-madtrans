@@ -39,7 +39,6 @@ my $geo_stops_from;
 my $sender;
 my $src;
 my @strings;
-my @dates;
 my @integers;
 
 GetOptions("get"                   => \$get,
@@ -56,7 +55,6 @@ GetOptions("get"                   => \$get,
            "gs"                    => \$geo_stops_from,
 
            "string=s"              => \@strings,
-           "dates=s"               => \@dates,
            "integer=i"             => \@integers);
 
 if ($get) {
@@ -83,22 +81,22 @@ if ($get) {
 # Commands in the script
 #
 sub get {
-  print("--bc bus calendar from <date> to <date>\n");
-  print("--bl /bus line/lines <integer> /on <date>\n");
+  print("--bc bus calendar from <string> to <string>\n");
+  print("--bl /bus line/lines <integer> /on <string>\n");
   print("--bn /bus stop <integer>\n");
-  print("--br /bus stops /for line <integer> /on <date>\n");
-  print("--bs /bus schedule /for line <integer> /on <date>\n");
+  print("--br /bus stops /for line <integer> /on <string>\n");
+  print("--bs /bus schedule /for line <integer> /on <string>\n");
   print("--ga wait time /at stop <integer>\n");
-  print("--gi info/information /of line <integer> /on <date>\n");
+  print("--gi info/information /of line <integer> /on <string>\n");
   print("--gs stops in <integer> /meters from /stop <integer>\n");
 
-  print("--bc calendario /de bus/autobús de <date> a <date>\n");
-  print("--bl línea/líneas de /bus/autobús <integer> /el <date>\n");
+  print("--bc calendario /de bus/autobús de <string> a <string>\n");
+  print("--bl línea/líneas de /bus/autobús <integer> /el <string>\n");
   print("--bn parada /de /bus/autobús <integer>\n");
-  print("--br paradas /de /bus/autobús /de línea <integer> /el <date>\n");
-  print("--bs horario /bus/autobús /para línea <integer> /el <date>\n");
+  print("--br paradas /de /bus/autobús /de línea <integer> /el <string>\n");
+  print("--bs horario /bus/autobús /para línea <integer> /el <string>\n");
   print("--ga tiempo /de espera /en parada <integer>\n");
-  print("--gi info/información /de /la línea <integer> /el <date>\n");
+  print("--gi info/información /de /la línea <integer> /el <string>\n");
   print("--gs paradas a <integer> /metros de /parada <integer>\n");
 }
 
@@ -106,14 +104,14 @@ sub get {
 # Get EMT calendar for lines
 #
 sub bus_calendar {
-  print("message dst=madtrans&sender=$sender&src=$src&tag=bus-calendar&sdate=$dates[0]&edate=$dates[1]\n");
+  print("message dst=madtrans&sender=$sender&src=$src&tag=bus-calendar&sdate=$strings[0]&edate=$strings[1]\n");
 }
 
 #
 # Get information on given lines
 #
 sub bus_lines {
-  print("message dst=madtrans&sender=$sender&src=$src&tag=bus-list-lines&date=$dates[0]&lines=@integers\n");
+  print("message dst=madtrans&sender=$sender&src=$src&tag=bus-list-lines&date=$strings[0]&lines=@integers\n");
 }
 
 #
@@ -127,14 +125,14 @@ sub bus_nodes {
 # Get stops for a given line
 #
 sub bus_route {
-  print("message dst=madtrans&sender=$sender&src=$src&tag=bus-route-lines&date=$dates[0]&line=$integers[0]\n");
+  print("message dst=madtrans&sender=$sender&src=$src&tag=bus-route-lines&date=$strings[0]&line=$integers[0]\n");
 }
 
 #
 # Get current schedule for the given line
 #
 sub bus_schedule {
-  print("message dst=madtrans&sender=$sender&src=$src&tag=bus-times-lines&date=$dates[0]&line=$integers[0]\n");
+  print("message dst=madtrans&sender=$sender&src=$src&tag=bus-times-lines&date=$strings[0]&line=$integers[0]\n");
 }
 
 #
@@ -148,12 +146,12 @@ sub geo_arrivals {
 # Get extended information on a given line
 #
 sub geo_line {
-  print("message dst=madtrans&sender=$sender&src=$src&tag=geo-info-line-extended&date=$dates[0]&line=$integers[0]\n");
+  print("message dst=madtrans&sender=$sender&src=$src&tag=geo-info-line-extended&date=$strings[0]&line=$integers[0]\n");
 }
 
 #
 # Get the stops in a given radius from another stop
 #
 sub geo_stops_from {
-  print("message dst=madtrans&sender=$sender&src=$src&tag=geo-stops-from-stop&radius=$integers[0]&stop=$integers[1]\n");
+  print("message dst=madtrans&sender=$sender&src=$src&tag=geo-stops-from-stop&radius=$strings[0]&stop=$integers[1]\n");
 }
