@@ -1,0 +1,7 @@
+agent = madtrans
+version = 0.1.0
+license = MIT
+maintainer = Rafael Medina García <rafamedgar@gmail.com>
+script = madtrans.py
+topics =
+description = Open data for transport services in the city of Madrid

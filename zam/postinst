@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Install dependencies
+# Fuzzywuzzy may conflict with Zoe's internal package, so we install it
+# to the agent's directory
+pip3 install -t ${ZOE_HOME}/agents/archivist/lib requests
+
+# Create config file
+touch ${ZOE_HOME}/etc/madtrans.conf
